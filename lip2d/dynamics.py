@@ -132,7 +132,8 @@ class lipfieldDynamicSystem():
     def ed(self,d):
         '''return damage energy'''
         if self.method == 'LF':
-            de = self.mech.law.Yc * self.mech.law.h(d)
+            h, _, _ = self.mech.law.h(d)
+            de = self.mech.law.Yc * h
             areas = self.mech.areas()
             return np.dot(areas, de)
         elif self.method =='PF':
